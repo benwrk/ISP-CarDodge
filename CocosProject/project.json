@@ -13,6 +13,7 @@
         "src/resource.js",
         "src/GameLayer.js",
         "src/Road.js",
-        "src/Car.js"
+        "src/Car.js",
+        "src/Cone.js"
     ]
 }

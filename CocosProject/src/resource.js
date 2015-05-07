@@ -5,7 +5,8 @@ var res = {
 	Car_White_png : "res/images/Car-White.png",
 	Car_Yellow_png : "res/images/Car-Yellow.png",
 	RoadTile_png : "res/images/RoadTile.png",
-	WhiteTile_png : "res/images/WhiteTile.png"
+	WhiteTile_png : "res/images/WhiteTile.png",
+	Cone_Red_png : "res/images/Cone-Red.png"
 };
 
 var g_resources = [];

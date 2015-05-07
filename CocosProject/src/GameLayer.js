@@ -16,10 +16,10 @@ var GameLayer = cc.LayerColor.extend({
 		this.addChild(this.car);
 		this.car.setPositionX(40);
 		this.car.setPositionY(20);
-		this.car.scheduleUpdate();
+		
+		this.cones = [];
 		
 		this.addKeyboardHandlers();
-		this.scheduleUpdate();
 		
 		return true;
 	},
@@ -28,6 +28,8 @@ var GameLayer = cc.LayerColor.extend({
 		console.log('KeyDown: ' + keyCode.toString());
 		if (keyCode === cc.KEY.space) {
 			this.road.scheduleUpdate();
+			this.car.scheduleUpdate();
+			this.scheduleUpdate();
 		}
 		if (keyCode === cc.KEY.left) {
 			this.car.moveLeft();
@@ -35,10 +37,19 @@ var GameLayer = cc.LayerColor.extend({
 		if (keyCode === cc.KEY.right) {
 			this.car.moveRight();
 		}
+		if (keyCode === cc.KEY.up) {
+			this.car.moveUp();
+		}
+		if (keyCode === cc.KEY.down) {
+			this.car.moveDown();
+		}
 	},
 	
 	onKeyUp: function(keyCode, event) {
 		console.log('KeyUp: ' + keyCode.toString());
+		if (keyCode === cc.KEY.up || keyCode === cc.KEY.down) {
+			this.car.stopVerticalMove();
+		}
 	},
 	
 	addKeyboardHandlers: function() {
@@ -55,7 +66,25 @@ var GameLayer = cc.LayerColor.extend({
 	},
 	
 	update: function() {
-		console.log('Car at: ' + this.car.getPositionX() + ', ' + this.car.getPositionY());
+		this.spawnConeRandomly();
+	},
+	
+	spawnConeRandomly: function() {
+		if (this.cones.length < 5 && Math.random() > 0.99 - (gameSpeed / 200)) {
+			var cone = new Cone();
+			var randomXPos = Math.round(Math.random() * 6) * 80 + 80;
+//			console.log('RXP: ' + randomXPos);
+			cone.setPosition(randomXPos, screenHeight);
+			cone.scheduleUpdate();
+			this.addChild(cone);
+			this.cones.push(cone);
+//			console.log('FOJ: ' + this.cones[0]);
+		}
+		while (this.cones[0] != null && this.cones[0].getPositionY() < -20) {
+			this.cones[0].unscheduleUpdate();
+			this.removeChild(this.cones[0]);
+			this.cones.splice(0, 1);
+		}
 	}
 });
 
