@@ -48,6 +48,7 @@
  */
 var screenWidth = 800;
 var screenHeight = 600;
+var gameSpeed = 3;
 
 cc.game.onStart = function(){
     cc.view.adjustViewPort(true);

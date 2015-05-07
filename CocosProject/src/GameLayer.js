@@ -1,12 +1,20 @@
 var GameLayer = cc.LayerColor.extend({
 	init: function() {
-		this._super(new cc.Color(127, 127, 127, 255));
+		this._super(new cc.Color(127, 200, 200, 255));
 		this.setPosition(0, 0);
 		console.log('Initialized');
 		
 		this.scoreLabel = cc.LabelTTF.create('0', 'Arial', 40);
 		this.scoreLabel.setPosition(screenWidth - 50, screenHeight - 50);
 		this.addChild(this.scoreLabel);
+		
+		this.road = new Road();
+		this.road.setPositionX(40);
+		this.addChild(this.road);
+		
+		this.car = new Car();
+		this.addChild(this.car);
+		this.car.setPosition(screenWidth / 2, 100);
 		
 		this.addKeyboardHandlers();
 		this.scheduleUpdate();
@@ -16,6 +24,10 @@ var GameLayer = cc.LayerColor.extend({
 	
 	onKeyDown: function(keyCode, event) {
 		console.log('KeyDown: ' + keyCode.toString());
+		if (keyCode === cc.KEY.space) {
+			this.road.addRoadLines();
+			this.road.scheduleUpdate();
+		}
 	},
 	
 	onKeyUp: function(keyCode, event) {

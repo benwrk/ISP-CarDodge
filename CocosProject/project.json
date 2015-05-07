@@ -11,6 +11,8 @@
     ],
     "jsList":[
         "src/resource.js",
-        "src/GameLayer.js"
+        "src/GameLayer.js",
+        "src/Road.js",
+        "src/Car.js"
     ]
 }
