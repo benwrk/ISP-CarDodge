@@ -14,6 +14,7 @@ var Road = cc.Node.extend({
 		this.addChild(this.roadTile);
 		
 		this.roadLines = [];
+		this.addRoadLines();
 		
 //		this.roadLine = new cc.Sprite();
 //		this.roadLine.initWithFile('res/images/WhiteTile.png');
@@ -29,7 +30,6 @@ var Road = cc.Node.extend({
 				roadLine.initWithFile('res/images/WhiteTile.png');
 				roadLine.setScale(0.01953125, 0.46875);
 				roadLine.setAnchorPoint(0.5, 0);
-				console.log('set at ' + i + ', ' + (this.roadTile._getHeight() * this.roadTile.getScaleY() - j));
 				roadLine.setPosition(i, this.roadTile._getHeight() * this.roadTile.getScaleY() - j);
 				this.roadLines.push(roadLine);
 				this.addChild(roadLine);
@@ -38,11 +38,15 @@ var Road = cc.Node.extend({
 	},
 	
 	update: function(dt) {
+		this.animateRoadLines();
+	},
+	
+	animateRoadLines: function() {
 		for (var i in this.roadLines) {
 			var line = this.roadLines[i];
 			line.setPositionY(line.getPositionY() - gameSpeed);
 			if (line.getPositionY() < -120) {
-				line.setPositionY(screenHeight );
+				line.setPositionY(screenHeight);
 			}
 		}
 	}

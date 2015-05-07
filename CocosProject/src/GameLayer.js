@@ -14,7 +14,9 @@ var GameLayer = cc.LayerColor.extend({
 		
 		this.car = new Car();
 		this.addChild(this.car);
-		this.car.setPosition(screenWidth / 2, 100);
+		this.car.setPositionX(40);
+		this.car.setPositionY(20);
+		this.car.scheduleUpdate();
 		
 		this.addKeyboardHandlers();
 		this.scheduleUpdate();
@@ -25,8 +27,13 @@ var GameLayer = cc.LayerColor.extend({
 	onKeyDown: function(keyCode, event) {
 		console.log('KeyDown: ' + keyCode.toString());
 		if (keyCode === cc.KEY.space) {
-			this.road.addRoadLines();
 			this.road.scheduleUpdate();
+		}
+		if (keyCode === cc.KEY.left) {
+			this.car.moveLeft();
+		}
+		if (keyCode === cc.KEY.right) {
+			this.car.moveRight();
 		}
 	},
 	
@@ -48,7 +55,7 @@ var GameLayer = cc.LayerColor.extend({
 	},
 	
 	update: function() {
-		
+		console.log('Car at: ' + this.car.getPositionX() + ', ' + this.car.getPositionY());
 	}
 });
 
