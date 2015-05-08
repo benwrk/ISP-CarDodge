@@ -20,7 +20,7 @@ var Cone = cc.Sprite.extend({
 				if (cone.getPositionY() - car.getPositionY() > 0 && cone.getPositionY() - car.getPositionY() <= 145) {
 					return true;
 				}
-				if (car.getPositionY() - cone.getPositionY() > 0 && car.getPositionY() - cone.getPositionY() <= 60) {
+				if (car.getPositionY() - cone.getPositionY() > 0 && car.getPositionY() - cone.getPositionY() <= 50) {
 					return true;
 				}
 				return false;

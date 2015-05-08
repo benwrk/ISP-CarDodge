@@ -48,7 +48,7 @@
  */
 var screenWidth = 800;
 var screenHeight = 600;
-var gameSpeed = 9;
+var gameSpeed = 3;
 var scene;
 
 cc.game.onStart = function(){

@@ -55,7 +55,7 @@ var Car = cc.Sprite.extend({
 	
 	animateLaneChange: function() {
 		if (this.getPositionX() !== this.nextPositionX) {
-			this.changingLane = true;
+			this.changingLane = false;
 			if (this.nextPositionX < this.getPositionX()) {
 				this.setRotation(-10);
 				this.setPositionX(this.getPositionX() - 5);
