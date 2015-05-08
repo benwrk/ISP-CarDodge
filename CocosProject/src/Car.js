@@ -50,7 +50,7 @@ var Car = cc.Sprite.extend({
 	update: function(dt) {
 		this.animateLaneChange();
 		this.performVerticalMove();
-		console.log('Car (reported) at: ' + this.getPositionX() + ', ' + this.getPositionY());
+//		console.log('Car (reported) at: ' + this.getPositionX() + ', ' + this.getPositionY());
 	},
 	
 	animateLaneChange: function() {

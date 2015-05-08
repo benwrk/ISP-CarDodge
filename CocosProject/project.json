@@ -14,6 +14,7 @@
         "src/GameLayer.js",
         "src/Road.js",
         "src/Car.js",
-        "src/Cone.js"
+        "src/Cone.js",
+        "src/TestCursor.js"
     ]
 }

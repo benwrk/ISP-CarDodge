@@ -48,7 +48,8 @@
  */
 var screenWidth = 800;
 var screenHeight = 600;
-var gameSpeed = 3;
+var gameSpeed = 9;
+var scene;
 
 cc.game.onStart = function(){
     cc.view.adjustViewPort(true);
@@ -56,7 +57,9 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(true);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new StartScene());
+    	var startScene = new StartScene();
+    	scene = startScene;
+        cc.director.runScene(startScene);
     }, this);
 };
 cc.game.run();
