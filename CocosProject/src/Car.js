@@ -55,14 +55,14 @@ var Car = cc.Sprite.extend({
 	
 	animateLaneChange: function() {
 		if (this.getPositionX() !== this.nextPositionX) {
-			this.changingLane = false;
+			this.changingLane = true;
 			if (this.nextPositionX < this.getPositionX()) {
 				this.setRotation(-10);
-				this.setPositionX(this.getPositionX() - 5);
+				this.setPositionX(this.getPositionX() - 10);
 			}
 			if (this.nextPositionX > this.getPositionX()) {
 				this.setRotation(10);
-				this.setPositionX(this.getPositionX() + 5);
+				this.setPositionX(this.getPositionX() + 10);
 			}
 		} else {
 			this.changingLane = false;

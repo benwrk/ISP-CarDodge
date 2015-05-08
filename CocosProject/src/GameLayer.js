@@ -15,7 +15,7 @@ var GameLayer = cc.LayerColor.extend({
 		this.addChild(this.road);
 		
 		this.car = new Car();
-		this.addChild(this.car);
+		this.addChild(this.car, 1);
 		this.car.setPositionX(40);
 		this.car.setPositionY(20);
 		
@@ -39,6 +39,7 @@ var GameLayer = cc.LayerColor.extend({
 		this.gameOverLabel.setAnchorPoint(0.5, 0.5);
 		this.addChild(this.gameOverLabel);
 		this.gameOverLabel.setOpacity(0)
+		
 //		this.cursor = new TestCursor();
 //		this.cursor.setPosition(screenWidth / 2, screenHeight / 2);
 //		this.addChild(this.cursor);
@@ -58,7 +59,7 @@ var GameLayer = cc.LayerColor.extend({
 			}
 		}
 		if (keyCode === cc.KEY[']']) {
-			if (gameSpeed < 12) {
+			if (gameSpeed < 25) {
 				gameSpeed++;
 			}
 		}
@@ -73,13 +74,13 @@ var GameLayer = cc.LayerColor.extend({
 //				this.cones[i].unscheduleUpdate();
 //			}
 //		}
-//		if (keyCode === cc.KEY.z) {
-//			console.log('Cursor at: ' + this.cursor.getPositionX() + ', ' + this.cursor.getPositionY());
-//			console.log('Car at: ' + this.car.getPositionX() + ', ' + this.car.getPositionY());
-//			for (var i in this.cones) {
-//				console.log('Cone[' + i + '] at: ' + this.cones[i].getPositionX() + ', ' + this.cones[i].getPositionY());
-//			}
-//		}
+		if (keyCode === cc.KEY.z) {
+			console.log('Cursor at: ' + this.cursor.getPositionX() + ', ' + this.cursor.getPositionY());
+			console.log('Car at: ' + this.car.getPositionX() + ', ' + this.car.getPositionY());
+			for (var i in this.cones) {
+				console.log('Cone[' + i + '] at: ' + this.cones[i].getPositionX() + ', ' + this.cones[i].getPositionY());
+			}
+		}
 //		if (keyCode === cc.KEY.n) {
 //			this.car.scheduleUpdate();
 //		}
@@ -140,7 +141,7 @@ var GameLayer = cc.LayerColor.extend({
 
 		this.livesLabel.setString(Number(this.lives).toFixed(2));
 		this.scoreLabel.setString(this.score);
-		this.speedBar.setPositionY((gameSpeed / 12) * screenHeight);
+		this.speedBar.setPositionY((gameSpeed / 25) * screenHeight);
 	},
 	
 	checkHit: function() {
@@ -186,7 +187,7 @@ var GameLayer = cc.LayerColor.extend({
 			this.cones[i].unscheduleUpdate();
 		}
 		this.gameOverLabel.setOpacity(255);
-		this.gameOverLabel.setZOrder(0);
+		this.gameOverLabel.setLocalZOrder(2);
 	},
 	
 	restart: function() {
@@ -219,7 +220,7 @@ var PrefaceLayer = cc.Layer.extend({
 		this.label2.setPosition(screenWidth / 2, screenHeight / 2 + 10);
 		this.addChild(this.label2);
 		
-		this.label3 = cc.LabelTTF.create('[] to adjust speed. Avoid the cones.', 'Arial', 45);
+		this.label3 = cc.LabelTTF.create('[ ] to adjust speed. Avoid the cones.', 'Arial', 45);
 		this.label3.setColor(new cc.Color(255, 255, 255, 255));
 		this.label3.setAnchorPoint(0.5, 0.5);
 		this.label3.setPosition(screenWidth / 2, screenHeight / 2 - 50);
