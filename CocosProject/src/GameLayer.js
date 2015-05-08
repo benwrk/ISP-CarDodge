@@ -34,6 +34,11 @@ var GameLayer = cc.LayerColor.extend({
 		this.speedBar.setPositionX(20);
 		this.addChild(this.speedBar);
 		
+		this.gameOverLabel = cc.LabelTTF.create('Game Over', 'Arial', 60)
+		this.gameOverLabel.setPosition(screenWidth / 2, screenHeight / 2);
+		this.gameOverLabel.setAnchorPoint(0.5, 0.5);
+		this.addChild(this.gameOverLabel);
+		this.gameOverLabel.setOpacity(0)
 //		this.cursor = new TestCursor();
 //		this.cursor.setPosition(screenWidth / 2, screenHeight / 2);
 //		this.addChild(this.cursor);
@@ -144,6 +149,7 @@ var GameLayer = cc.LayerColor.extend({
 //				console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!');
 				this.lives -= gameSpeed / 300;
 				if (this.lives <= 0) {
+					this.lives = 0;
 					this.gameOver();
 				}
 			}
@@ -179,6 +185,8 @@ var GameLayer = cc.LayerColor.extend({
 		for (var i in this.cones) {
 			this.cones[i].unscheduleUpdate();
 		}
+		this.gameOverLabel.setOpacity(255);
+		this.gameOverLabel.setZOrder(0);
 	},
 	
 	restart: function() {
@@ -191,25 +199,72 @@ var GameLayer = cc.LayerColor.extend({
 		for (var i in this.cones) {
 			this.cones[i].scheduleUpdate();
 		}
+		this.gameOverLabel.setOpacity(0);
 	}
 });
 
 var PrefaceLayer = cc.Layer.extend({
 	init: function() {
+		this._super();
+		this.setColor(new cc.Color(127, 200, 200, 255));
+		this.label = cc.LabelTTF.create('CarDodger', 'Arial', 50);
+		this.label.setColor(new cc.Color(255, 255, 255, 255));
+		this.label.setAnchorPoint(0.5, 0.5);
+		this.label.setPosition(screenWidth / 2, screenHeight - 120);
+		this.addChild(this.label);
 		
-	}
-});
-
-var GameOverLayer = cc.Layer.extend({
-	init: function() {
+		this.label2 = cc.LabelTTF.create('Use ⬆⬇⬅➡ to control the car,', 'Arial', 45);
+		this.label2.setColor(new cc.Color(255, 255, 255, 255));
+		this.label2.setAnchorPoint(0.5, 0.5);
+		this.label2.setPosition(screenWidth / 2, screenHeight / 2 + 10);
+		this.addChild(this.label2);
 		
+		this.label3 = cc.LabelTTF.create('[] to adjust speed. Avoid the cones.', 'Arial', 45);
+		this.label3.setColor(new cc.Color(255, 255, 255, 255));
+		this.label3.setAnchorPoint(0.5, 0.5);
+		this.label3.setPosition(screenWidth / 2, screenHeight / 2 - 50);
+		this.addChild(this.label3);
+		this.addKeyboardHandlers();
+		
+		this.label4 = cc.LabelTTF.create('Press space to start/restart the game.', 'Arial', 45);
+		this.label4.setColor(new cc.Color(255, 255, 255, 255));
+		this.label4.setAnchorPoint(0.5, 0.5);
+		this.label4.setPosition(screenWidth / 2, 70);
+		this.addChild(this.label4);
+		this.addKeyboardHandlers();
+	},
+	
+	addKeyboardHandlers: function() {
+		var self = this;
+		cc.eventManager.addListener({
+			event: cc.EventListener.KEYBOARD,
+			onKeyPressed: function(keyCode, event) {
+				self.onKeyDown(keyCode, event);
+			},
+			onKeyReleased: function(keyCode, event) {
+				self.onKeyUp(keyCode, event);
+			}
+		}, this);
+	},
+	
+	onKeyDown: function(keyCode, event) {
+		if (keyCode === cc.KEY.space) {
+			scene.removeChild(scene.layer);
+			scene.layer = new GameLayer();
+			scene.layer.init();
+			scene.addChild(scene.layer);
+		}
+	},
+	
+	onKeyUp: function(keyCode, event) {
+		// Do nothing.
 	}
 });
 
 var StartScene = cc.Scene.extend({
 	onEnter: function() {
 		this._super();
-		this.layer = new GameLayer();
+		this.layer = new PrefaceLayer();
 		this.layer.init();
 		this.addChild(this.layer);
 	}
