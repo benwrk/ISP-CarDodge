@@ -1,9 +1,20 @@
 var Car = cc.Sprite.extend({
+
 	ctor: function() {
 		this._super();
 		
-		var colorRandomizer = Math.random();
+		this.initWithRandomColor();
 		
+		this.setScale(0.6, 0.6);
+		this.setAnchorPoint(0.24, 0);
+		this.nextPositionX = 40;
+		this.changingLane = false;
+		this.directionY = Car.DIRECTION_Y.STILL;
+	},
+	
+	initWithRandomColor: function() {
+		var colorRandomizer = Math.random();
+
 		if (colorRandomizer >= 0.8) {
 			this.initWithFile("res/images/Car-Blue.png");
 		} else if (colorRandomizer >= 0.6) {
@@ -15,12 +26,6 @@ var Car = cc.Sprite.extend({
 		} else {
 			this.initWithFile("res/images/Car-White.png");
 		}
-		
-		this.setScale(0.6, 0.6);
-		this.setAnchorPoint(0.24, 0);
-		this.nextPositionX = 40;
-		this.changingLane = false;
-		this.directionY = Car.DIRECTION_Y.STILL;
 	},
 	
 	moveUp: function() {

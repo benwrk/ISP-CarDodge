@@ -25,12 +25,6 @@ var Cone = cc.Sprite.extend({
 				return false;
 			};
 			var xInRange = function(cone) {
-//				if ((cone.getPositionX() - 35) - (car.getPositionX() + 72) <= 0 && car.getPositionX() < cone.getPositionX()) {
-//					return true;
-//				}
-//				if ((car.getPositionX() + 8) - (cone.getPositionX() + 35) <= 0 && car.getPositionX() > cone.getPositionX()) {
-//					return true;
-//				}
 				if ((cone.getPositionX() - 35) - ((car.nextPositionX + car.getPositionX()) / 2 + 72) <= -10 && (car.nextPositionX + car.getPositionX()) / 2 < cone.getPositionX()) {
 					return true;
 				}

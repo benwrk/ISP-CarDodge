@@ -2,10 +2,6 @@ var Road = cc.Node.extend({
 	ctor: function() {
 		this._super();
 		this.setAnchorPoint(0, 0);
-//		this.setColor(new cc.Color(25, 25, 25, 255));
-//		this.set
-//		this._setWidth(512);
-//		this._setHeight(screenHeight);
 		this.roadTile = new cc.Sprite();
 		this.roadTile.initWithFile('res/images/RoadTile.png');
 		this.roadTile.setScale(2.1875, screenHeight / 256);
@@ -15,11 +11,6 @@ var Road = cc.Node.extend({
 		
 		this.roadLines = [];
 		this.addRoadLines();
-		
-//		this.roadLine = new cc.Sprite();
-//		this.roadLine.initWithFile('res/images/WhiteTile.png');
-//		this.roadLine.setScale(0.01953125, 0.5);
-//		this.roadLine.setAnchorPoint(0, 0.5);
 	},
 	
 	addRoadLines: function() {

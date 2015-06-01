@@ -66,24 +66,6 @@ var GameLayer = cc.LayerColor.extend({
 		if (keyCode === cc.KEY.space) {
 			this.restart();
 		}
-//		if (keyCode === cc.KEY.x) {
-//			this.road.unscheduleUpdate();
-//			this.car.unscheduleUpdate();
-//			this.unscheduleUpdate();
-//			for (var i in this.cones) {
-//				this.cones[i].unscheduleUpdate();
-//			}
-//		}
-		if (keyCode === cc.KEY.z) {
-			console.log('Cursor at: ' + this.cursor.getPositionX() + ', ' + this.cursor.getPositionY());
-			console.log('Car at: ' + this.car.getPositionX() + ', ' + this.car.getPositionY());
-			for (var i in this.cones) {
-				console.log('Cone[' + i + '] at: ' + this.cones[i].getPositionX() + ', ' + this.cones[i].getPositionY());
-			}
-		}
-//		if (keyCode === cc.KEY.n) {
-//			this.car.scheduleUpdate();
-//		}
 		if (keyCode === cc.KEY.left) {
 			this.car.moveLeft();
 		}
@@ -96,6 +78,11 @@ var GameLayer = cc.LayerColor.extend({
 		if (keyCode === cc.KEY.down) {
 			this.car.moveDown();
 		}
+		
+///////////////////////////////////////	
+////////CODE FOR DEBUGGING MODE////////
+///////////////////////////////////////
+//		
 //		if (keyCode === cc.KEY.w) {
 //			this.cursor.setPositionY(this.cursor.getPositionY() + 10);
 //			console.log('Cursor at: ' + this.cursor.getPositionX() + ', ' + this.cursor.getPositionY());
@@ -112,6 +99,25 @@ var GameLayer = cc.LayerColor.extend({
 //			this.cursor.setPositionX(this.cursor.getPositionX() + 10);
 //			console.log('Cursor at: ' + this.cursor.getPositionX() + ', ' + this.cursor.getPositionY());
 //		}
+//		if (keyCode === cc.KEY.x) {
+//			this.road.unscheduleUpdate();
+//			this.car.unscheduleUpdate();
+//			this.unscheduleUpdate();
+//			for (var i in this.cones) {
+//				this.cones[i].unscheduleUpdate();
+//			}
+//		}
+//		if (keyCode === cc.KEY.z) {
+//			console.log('Cursor at: ' + this.cursor.getPositionX() + ', ' + this.cursor.getPositionY());
+//			console.log('Car at: ' + this.car.getPositionX() + ', ' + this.car.getPositionY());
+//			for (var i in this.cones) {
+//				console.log('Cone[' + i + '] at: ' + this.cones[i].getPositionX() + ', ' + this.cones[i].getPositionY());
+//			}
+//		}
+//		if (keyCode === cc.KEY.n) {
+//			this.car.scheduleUpdate();
+//		}
+///////////////////////////////////////
 	},
 	
 	onKeyUp: function(keyCode, event) {
