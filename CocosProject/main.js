@@ -50,6 +50,8 @@ var screenWidth = 800;
 var screenHeight = 600;
 var gameSpeed = 3;
 var scene;
+var accelKey = 'a';
+var decelKey = 'z';
 
 cc.game.onStart = function(){
     cc.view.adjustViewPort(true);

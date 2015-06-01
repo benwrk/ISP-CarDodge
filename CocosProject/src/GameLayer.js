@@ -53,12 +53,12 @@ var GameLayer = cc.LayerColor.extend({
 	
 	onKeyDown: function(keyCode, event) {
 //		console.log('KeyDown: ' + keyCode.toString());
-		if (keyCode === cc.KEY['[']) {
+		if (keyCode === cc.KEY[decelKey]) {
 			if (gameSpeed > 1) {
 				gameSpeed--;
 			}
 		}
-		if (keyCode === cc.KEY[']']) {
+		if (keyCode === cc.KEY[accelKey]) {
 			if (gameSpeed < 25) {
 				gameSpeed++;
 			}
@@ -226,7 +226,7 @@ var PrefaceLayer = cc.Layer.extend({
 		this.label2.setPosition(screenWidth / 2, screenHeight / 2 + 10);
 		this.addChild(this.label2);
 		
-		this.label3 = cc.LabelTTF.create('[ ] to adjust speed. Avoid the cones.', 'Arial', 45);
+		this.label3 = cc.LabelTTF.create(accelKey.toUpperCase() + ' ' + decelKey.toUpperCase() + ' to adjust speed. Avoid the cones.', 'Arial', 45);
 		this.label3.setColor(new cc.Color(255, 255, 255, 255));
 		this.label3.setAnchorPoint(0.5, 0.5);
 		this.label3.setPosition(screenWidth / 2, screenHeight / 2 - 50);
