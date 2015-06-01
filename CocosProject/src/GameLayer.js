@@ -214,7 +214,7 @@ var PrefaceLayer = cc.Layer.extend({
 	init: function() {
 		this._super();
 		this.setColor(new cc.Color(127, 200, 200, 255));
-		this.label = cc.LabelTTF.create('CarDodger', 'Arial', 50);
+		this.label = cc.LabelTTF.create('CarDodge', 'Arial', 50);
 		this.label.setColor(new cc.Color(255, 255, 255, 255));
 		this.label.setAnchorPoint(0.5, 0.5);
 		this.label.setPosition(screenWidth / 2, screenHeight - 120);
